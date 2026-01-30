@@ -152,8 +152,8 @@ export default function Home() {
             <Button size="lg" onClick={() => window.location.href = getLoginUrl()}>
               Começar Agora
             </Button>
-            <Button size="lg" variant="outline" className="bg-white/20 text-white border-white hover:bg-white/30">
-              Saiba Mais
+            <Button size="lg" variant="outline" className="bg-white/20 text-white border-white hover:bg-white/30" onClick={() => window.location.href = '/plans'}>
+              Ver Planos
             </Button>
           </div>
         </div>

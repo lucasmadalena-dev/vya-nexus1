@@ -41,6 +41,10 @@ cd /opt
 sudo git clone <seu-repositorio-vya-nexus> vya-nexus
 cd vya-nexus
 sudo chown -R $USER:$USER .
+
+# ⚠️ SEGURANÇA: Verificar permissões
+sudo chmod 755 /opt/vya-nexus
+sudo chmod 600 /opt/vya-nexus/.env
 ```
 
 ---
@@ -90,6 +94,10 @@ PORT=3000
 ```bash
 # Ctrl+O para salvar
 # Ctrl+X para sair
+
+# ⚠️ SEGURANÇA: Proteger arquivo .env
+sudo chmod 600 /opt/vya-nexus/.env
+sudo chown $USER:$USER /opt/vya-nexus/.env
 ```
 
 ---
@@ -122,6 +130,11 @@ pnpm build
 
 ### 4.1 Gerar Certificados
 ```bash
+# ⚠️ IMPORTANTE: Certbot deve ser executado ANTES de iniciar Nginx
+# Pois certbot precisa da porta 80 disponível
+
+sudo systemctl stop nginx  # Se já estiver rodando
+
 sudo certbot certonly --standalone \
   -d nexus.vyaconcept.com.br \
   -d admin-nexus.vyaconcept.com.br \
@@ -142,6 +155,9 @@ sudo ls -la /etc/letsencrypt/live/nexus.vyaconcept.com.br/
 ```bash
 sudo systemctl enable certbot.timer
 sudo systemctl start certbot.timer
+
+# Testar renovação automática
+sudo certbot renew --dry-run
 ```
 
 ---
