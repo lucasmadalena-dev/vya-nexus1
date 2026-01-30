@@ -105,3 +105,37 @@
 - [ ] Testar criação de domínios e contas de email
 - [ ] Validar segurança e permissões multi-tenant
 - [ ] Deploy para produção
+
+
+## Infraestrutura de Domínio vyaconcept.com.br
+
+### Configuração de Subdomínios
+- [x] Implementar roteamento de subdomínios (nexus, cloud, email, www)
+- [x] Configurar mapeamento de aplicações por subdomínio
+- [x] Adicionar suporte a wildcard para subdomínios de clientes
+- [x] Implementar validação de subdomínio
+
+### Email Nativo @vyaconcept.com.br
+- [x] Configurar domínio padrão para contas de email
+- [x] Implementar criação automática de contas @vyaconcept.com.br
+- [x] Adicionar suporte a aliases de email
+- [x] Implementar sincronização com servidor SMTP/IMAP
+
+### Registros DNS e Documentação
+- [x] Documentar registros A para subdomínios
+- [x] Documentar registros CNAME para CDN
+- [x] Documentar registros MX para email
+- [x] Documentar registros TXT para SPF/DKIM
+- [x] Criar guia de configuração no provedor de domínio
+
+### Let's Encrypt e SSL
+- [x] Preparar integração com Let's Encrypt
+- [x] Implementar renovação automática de certificados
+- [x] Configurar certificados wildcard para subdomínios
+- [x] Remover simulação de SSL (mkcert)
+
+### Finalização
+- [x] Testar roteamento de subdomínios
+- [x] Validar certificados SSL
+- [x] Testar criação de email @vyaconcept.com.br
+- [x] Preparar ambiente de produção

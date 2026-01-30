@@ -8,6 +8,7 @@ import { hostingRouter } from "./routers/hosting";
 import { adminRouter } from "./routers/admin";
 import { chatRouter } from "./routers/chat";
 import { webhooksRouter } from "./routers/webhooks";
+import { emailVyaconceptRouter } from "./routers/email-vyaconcept";
 
 export const appRouter = router({
   system: systemRouter,
@@ -15,6 +16,7 @@ export const appRouter = router({
   payments: paymentsRouter,
   cloud: cloudRouter,
   email: emailRouter,
+  emailVya: emailVyaconceptRouter,
   hosting: hostingRouter,
   admin: adminRouter,
   chat: chatRouter,
