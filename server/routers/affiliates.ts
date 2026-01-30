@@ -5,7 +5,11 @@ import { affiliates } from "../../drizzle/schema";
 import { eq } from "drizzle-orm";
 import Stripe from "stripe"; // @ts-ignore
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
+// Inicializar Stripe apenas se chave estiver disponível
+let stripe: Stripe | null = null;
+if (process.env.STRIPE_SECRET_KEY) {
+  stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+}
 
 /**
  * Gerar código de cupom único
@@ -38,6 +42,9 @@ export const affiliatesRouter = router({
         const couponCode = generateCouponCode();
 
         // Criar cupom no Stripe (10% de desconto)
+        if (!stripe) {
+          throw new Error('Stripe não está configurado');
+        }
         const stripeCoupon = await stripe.coupons.create({
           percent_off: 10,
           duration: "forever",
