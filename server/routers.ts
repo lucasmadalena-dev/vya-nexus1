@@ -7,6 +7,7 @@ import { emailRouter } from "./routers/email";
 import { hostingRouter } from "./routers/hosting";
 import { adminRouter } from "./routers/admin";
 import { chatRouter } from "./routers/chat";
+import { webhooksRouter } from "./routers/webhooks";
 
 export const appRouter = router({
   system: systemRouter,
@@ -17,6 +18,7 @@ export const appRouter = router({
   hosting: hostingRouter,
   admin: adminRouter,
   chat: chatRouter,
+  webhooks: webhooksRouter,
 });
 
 export type AppRouter = typeof appRouter;

@@ -74,3 +74,34 @@
 
 ## Página de Apresentação
 - [ ] Criar página web interativa de apresentação dos resultados
+
+
+## Tarefas Finais - Pronto para Mercado
+
+### Persistência Real do Vya Cloud (S3)
+- [x] Configurar credenciais AWS S3
+- [x] Implementar upload real de arquivos para S3
+- [x] Implementar download com URLs pré-assinadas
+- [x] Adicionar validação de tamanho de arquivo
+- [x] Implementar deleção de arquivos do S3
+
+### UI de Gestão de Recursos
+- [x] Criar página de gerenciamento de domínios
+- [x] Criar página de gerenciamento de contas de email
+- [x] Criar página de gerenciamento de sites hospedados
+- [x] Implementar formulários de cadastro com validação
+- [x] Adicionar confirmação visual de ações
+
+### Automação de Assinaturas (Webhooks Stripe)
+- [x] Implementar endpoint de webhook do Stripe
+- [x] Processar eventos de pagamento bem-sucedido
+- [x] Processar eventos de cancelamento de assinatura
+- [x] Atualizar status de tenant no banco de dados
+- [x] Implementar lógica de suspensão de acesso
+
+### Testes e Deploy
+- [ ] Testar fluxo completo de pagamento
+- [ ] Testar upload e download de arquivos
+- [ ] Testar criação de domínios e contas de email
+- [ ] Validar segurança e permissões multi-tenant
+- [ ] Deploy para produção

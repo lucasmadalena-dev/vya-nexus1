@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Onboarding from "./pages/Onboarding";
 import Cloud from "./pages/Cloud";
+import Email from "./pages/Email";
+import Hosting from "./pages/Hosting";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -17,6 +19,8 @@ function Router() {
       <Route path={"/dashboard"} component={Dashboard} />
       <Route path={"/onboarding"} component={Onboarding} />
       <Route path={"/cloud"} component={Cloud} />
+      <Route path={"/email"} component={Email} />
+      <Route path={"/hosting"} component={Hosting} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
