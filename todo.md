@@ -165,3 +165,23 @@
 ### URL Final de Acesso
 - [x] Fornecer URL final: https://nexus.vyaconcept.com.br
 - [x] Documentar URL de admin: https://admin-nexus.vyaconcept.com.br
+
+
+## Configuração de Nginx e PM2 (Sem Execução)
+
+### Arquivos de Configuração Nginx
+- [x] Criar arquivo nginx/vya-nexus.conf com rotas dos subdomínios
+- [x] Criar arquivo nginx/ssl.conf com configurações de SSL
+- [x] Criar arquivo nginx/upstream.conf com definição de upstreams
+- [x] Documentar passos de ativação manual
+
+### Arquivo de Configuração PM2
+- [x] Criar arquivo ecosystem.config.js com configuração de processos
+- [x] Documentar como iniciar com PM2
+- [x] Documentar como configurar auto-restart
+
+### Guia de Ativação Manual
+- [x] Criar DEPLOYMENT_MANUAL.md com instruções passo a passo
+- [x] Documentar como copiar arquivos Nginx
+- [x] Documentar como ativar Let's Encrypt
+- [x] Documentar como iniciar PM2
