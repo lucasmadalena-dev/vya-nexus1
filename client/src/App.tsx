@@ -10,6 +10,7 @@ import Onboarding from "./pages/Onboarding";
 import Cloud from "./pages/Cloud";
 import Email from "./pages/Email";
 import Hosting from "./pages/Hosting";
+import AdminNexus from "./pages/AdminNexus";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -21,6 +22,7 @@ function Router() {
       <Route path={"/cloud"} component={Cloud} />
       <Route path={"/email"} component={Email} />
       <Route path={"/hosting"} component={Hosting} />
+      <Route path={"/admin-nexus"} component={AdminNexus} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

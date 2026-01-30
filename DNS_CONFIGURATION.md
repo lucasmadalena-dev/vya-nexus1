@@ -1,30 +1,35 @@
-# Configuração de Registros DNS para vyaconcept.com.br
+# Configuração de Registros DNS - Vya Nexus
 
-Este documento descreve todos os registros DNS necessários para configurar o domínio vyaconcept.com.br com suporte completo aos serviços Vya Nexus em produção.
+Este documento descreve os registros DNS necessários para configurar os subdomínios do Vya Nexus sob o domínio vyaconcept.com.br.
 
-## Visão Geral da Infraestrutura
+## Escopo de Configuração
 
-O Vya Nexus utiliza uma arquitetura de subdomínios para separar diferentes serviços:
+O Vya Nexus opera exclusivamente nos seguintes subdomínios:
 
 | Subdomínio | Serviço | Descrição |
 |-----------|---------|-----------|
 | `nexus.vyaconcept.com.br` | Dashboard Principal | Painel de controle do Vya Nexus |
+| `admin-nexus.vyaconcept.com.br` | Painel Administrativo | Gestão técnica do sistema |
 | `cloud.vyaconcept.com.br` | Vya Cloud | Armazenamento em nuvem |
 | `email.vyaconcept.com.br` | Vya Email | Gerenciador de email profissional |
 | `hosting.vyaconcept.com.br` | Vya Hosting | Hospedagem de sites estáticos |
-| `admin.vyaconcept.com.br` | Painel Admin | Administração do sistema |
-| `www.vyaconcept.com.br` | Website Público | Página inicial e marketing |
-| `vyaconcept.com.br` | Domínio Raiz | Redireciona para www |
+
+**Nota Importante:** O domínio raiz `vyaconcept.com.br` e o subdomínio `www.vyaconcept.com.br` são propriedade exclusiva do projeto do Herbert e estão fora do escopo do Vya Nexus.
 
 ## Registros DNS Necessários
 
-### 1. Registros A (Apontamento para IP)
+### Registros A (Apontamento para IP)
 
-Configure os seguintes registros A para apontar os subdomínios para o servidor de produção:
+Configure os seguintes registros A para apontar os subdomínios do Nexus para o servidor de produção:
 
 ```
 Tipo: A
 Nome: nexus
+Valor: [SEU_IP_DO_SERVIDOR]
+TTL: 3600
+
+Tipo: A
+Nome: admin-nexus
 Valor: [SEU_IP_DO_SERVIDOR]
 TTL: 3600
 
@@ -42,44 +47,13 @@ Tipo: A
 Nome: hosting
 Valor: [SEU_IP_DO_SERVIDOR]
 TTL: 3600
-
-Tipo: A
-Nome: admin
-Valor: [SEU_IP_DO_SERVIDOR]
-TTL: 3600
-
-Tipo: A
-Nome: www
-Valor: [SEU_IP_DO_SERVIDOR]
-TTL: 3600
-
-Tipo: A
-Nome: @ (raiz)
-Valor: [SEU_IP_DO_SERVIDOR]
-TTL: 3600
 ```
 
-**Nota:** Substitua `[SEU_IP_DO_SERVIDOR]` pelo IP público do seu servidor de produção.
+**Substitua `[SEU_IP_DO_SERVIDOR]` pelo IP público do seu servidor de produção.**
 
-### 2. Registros CNAME (Alias)
+### Registros MX (Mail Exchange)
 
-Se você utilizar um CDN ou serviço de proxy, configure os registros CNAME:
-
-```
-Tipo: CNAME
-Nome: cdn
-Valor: [SEU_CDN_ENDPOINT]
-TTL: 3600
-
-Tipo: CNAME
-Nome: api
-Valor: nexus.vyaconcept.com.br
-TTL: 3600
-```
-
-### 3. Registros MX (Mail Exchange)
-
-Configure os registros MX para rotear emails para o servidor de email do Vya Nexus:
+Configure os registros MX para rotear emails do domínio vyaconcept.com.br para o servidor de email do Vya Nexus:
 
 ```
 Tipo: MX
@@ -97,11 +71,9 @@ TTL: 3600
 
 **Nota:** Configure pelo menos dois servidores MX para redundância.
 
-### 4. Registros TXT (SPF, DKIM, DMARC)
+### Registros TXT (SPF, DKIM, DMARC)
 
 #### SPF (Sender Policy Framework)
-
-O SPF ajuda a prevenir spoofing de email:
 
 ```
 Tipo: TXT
@@ -112,8 +84,6 @@ TTL: 3600
 
 #### DKIM (DomainKeys Identified Mail)
 
-Configure o DKIM para assinar digitalmente emails:
-
 ```
 Tipo: TXT
 Nome: default._domainkey
@@ -121,11 +91,9 @@ Valor: [DKIM_PUBLIC_KEY_AQUI]
 TTL: 3600
 ```
 
-**Nota:** Substitua `[DKIM_PUBLIC_KEY_AQUI]` pela chave pública DKIM gerada pelo seu servidor de email.
+**Substitua `[DKIM_PUBLIC_KEY_AQUI]` pela chave pública DKIM gerada pelo seu servidor de email.**
 
 #### DMARC (Domain-based Message Authentication)
-
-Configure o DMARC para política de autenticação:
 
 ```
 Tipo: TXT
@@ -134,45 +102,49 @@ Valor: v=DMARC1; p=quarantine; rua=mailto:dmarc@vyaconcept.com.br; ruf=mailto:dm
 TTL: 3600
 ```
 
-### 5. Registros para Let's Encrypt (Validação ACME)
+### Registros para Let's Encrypt (Validação ACME)
 
 Se utilizar Let's Encrypt com validação DNS, configure:
 
 ```
 Tipo: TXT
-Nome: _acme-challenge
+Nome: _acme-challenge.nexus
+Valor: [TOKEN_ACME_AQUI]
+TTL: 300
+
+Tipo: TXT
+Nome: _acme-challenge.admin-nexus
+Valor: [TOKEN_ACME_AQUI]
+TTL: 300
+
+Tipo: TXT
+Nome: _acme-challenge.cloud
+Valor: [TOKEN_ACME_AQUI]
+TTL: 300
+
+Tipo: TXT
+Nome: _acme-challenge.email
+Valor: [TOKEN_ACME_AQUI]
+TTL: 300
+
+Tipo: TXT
+Nome: _acme-challenge.hosting
 Valor: [TOKEN_ACME_AQUI]
 TTL: 300
 ```
 
-**Nota:** Este registro é temporário e usado apenas durante a validação do certificado.
-
-### 6. Registros para Wildcard SSL
-
-Para suportar subdomínios de clientes (ex: cliente1.vyaconcept.com.br):
-
-```
-Tipo: A
-Nome: *.clientes
-Valor: [SEU_IP_DO_SERVIDOR]
-TTL: 3600
-
-Tipo: TXT
-Nome: _acme-challenge.*.clientes
-Valor: [TOKEN_ACME_WILDCARD]
-TTL: 300
-```
+**Nota:** Estes registros são temporários e usados apenas durante a validação do certificado.
 
 ## Configuração no Provedor de Domínio
 
 ### Passo a Passo Genérico
 
-1. **Acesse o painel de controle do seu provedor de domínio** (GoDaddy, Namecheap, Registro.br, etc.)
-2. **Localize a seção de "Gerenciar DNS"** ou "DNS Management"
-3. **Adicione os registros A** conforme listado acima
-4. **Configure os registros MX** para email
-5. **Adicione os registros TXT** para SPF, DKIM e DMARC
-6. **Aguarde a propagação DNS** (pode levar até 48 horas)
+1. Acesse o painel de controle do seu provedor de domínio (GoDaddy, Namecheap, Registro.br, etc.)
+2. Localize a seção de "Gerenciar DNS" ou "DNS Management"
+3. Adicione os registros A conforme listado acima
+4. Configure os registros MX para email
+5. Adicione os registros TXT para SPF, DKIM e DMARC
+6. Aguarde a propagação DNS (pode levar até 48 horas)
 
 ### Exemplo: Registro.br
 
@@ -224,13 +196,15 @@ sudo apt-get update
 sudo apt-get install certbot python3-certbot-nginx
 ```
 
-### Gerar Certificado Wildcard
+### Gerar Certificados para Subdomínios do Nexus
 
 ```bash
 sudo certbot certonly --dns-route53 \
-  -d vyaconcept.com.br \
-  -d *.vyaconcept.com.br \
-  -d *.clientes.vyaconcept.com.br
+  -d nexus.vyaconcept.com.br \
+  -d admin-nexus.vyaconcept.com.br \
+  -d cloud.vyaconcept.com.br \
+  -d email.vyaconcept.com.br \
+  -d hosting.vyaconcept.com.br
 ```
 
 ### Renovação Automática
@@ -263,14 +237,18 @@ sudo systemctl start certbot.timer
 ### Verificar Saúde dos Registros DNS
 
 ```bash
-# Verificar todos os registros
-dig vyaconcept.com.br ANY
+# Verificar todos os registros do Nexus
+dig nexus.vyaconcept.com.br ANY
+dig admin-nexus.vyaconcept.com.br ANY
+dig cloud.vyaconcept.com.br ANY
+dig email.vyaconcept.com.br ANY
+dig hosting.vyaconcept.com.br ANY
 
 # Verificar propagação
-dig +short vyaconcept.com.br
+dig +short nexus.vyaconcept.com.br
 
 # Verificar TTL
-dig +nocmd vyaconcept.com.br +noall +answer
+dig +nocmd nexus.vyaconcept.com.br +noall +answer
 ```
 
 ### Renovação de Certificados
@@ -289,7 +267,7 @@ sudo certbot renew
 
 ### Email não está sendo entregue
 
-1. Verifique os registros MX
+1. Verifique os registros MX com `dig vyaconcept.com.br MX`
 2. Valide o SPF com `dig vyaconcept.com.br TXT`
 3. Confirme que o DKIM está configurado corretamente
 4. Verifique os logs do servidor de email

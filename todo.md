@@ -139,3 +139,29 @@
 - [x] Validar certificados SSL
 - [x] Testar criação de email @vyaconcept.com.br
 - [x] Preparar ambiente de produção
+
+
+## Isolamento de Domínio e Reestruturação de Admin
+
+### Remover Configurações de Domínio Raíz
+- [x] Remover subdomínio raíz (@) de subdomains.ts
+- [x] Remover subdomínio www de subdomains.ts
+- [x] Remover configurações de website público
+- [x] Remover redirecionamento do domínio raíz
+
+### Reestruturar Admin para admin-nexus.vyaconcept.com.br
+- [x] Renomear admin para admin-nexus
+- [x] Atualizar rotas do painel administrativo
+- [x] Atualizar configuração de subdomínios
+- [x] Atualizar rotas no App.tsx
+
+### Atualizar Documentação DNS
+- [x] Remover registros A para domínio raíz
+- [x] Remover registros A para www
+- [x] Remover registros CNAME para www
+- [x] Manter apenas registros para nexus, admin-nexus, cloud, email, hosting
+- [x] Atualizar DNS_CONFIGURATION.md
+
+### URL Final de Acesso
+- [x] Fornecer URL final: https://nexus.vyaconcept.com.br
+- [x] Documentar URL de admin: https://admin-nexus.vyaconcept.com.br

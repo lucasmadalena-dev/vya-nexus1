@@ -42,31 +42,13 @@ export const SUBDOMAINS = {
     port: 3003,
   },
 
-  // Painel administrativo
-  admin: {
-    name: "admin",
-    fullDomain: `admin.${MAIN_DOMAIN}`,
-    description: "Painel administrativo do sistema",
+  // Painel administrativo exclusivo do Nexus
+  adminNexus: {
+    name: "admin-nexus",
+    fullDomain: `admin-nexus.${MAIN_DOMAIN}`,
+    description: "Painel administrativo do Vya Nexus",
     service: "admin",
     port: 3004,
-  },
-
-  // Website público
-  www: {
-    name: "www",
-    fullDomain: `www.${MAIN_DOMAIN}`,
-    description: "Website público do Vya Nexus",
-    service: "website",
-    port: 3005,
-  },
-
-  // Domínio raiz
-  root: {
-    name: "@",
-    fullDomain: MAIN_DOMAIN,
-    description: "Domínio raiz - redireciona para www",
-    service: "website",
-    port: 3005,
   },
 };
 
@@ -160,9 +142,9 @@ export function extractSubdomain(hostname: string): string | null {
     return null;
   }
 
-  // Se tem menos de 3 partes, é o domínio raiz ou www
+  // Se tem menos de 3 partes, não é um subdomínio válido do Nexus
   if (parts.length < 3) {
-    return parts[0] === "www" ? "www" : "root";
+    return null;
   }
 
   // Retorna a primeira parte como subdomínio
