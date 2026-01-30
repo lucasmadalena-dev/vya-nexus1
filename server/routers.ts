@@ -13,6 +13,7 @@ import { plansRouter } from "./routers/plans";
 import { supportRouter } from "./routers/support";
 import { checkoutRouter } from "./routers/checkout";
 import { affiliatesRouter } from "./routers/affiliates";
+import { onboardingRouter } from "./routers/onboarding";
 
 export const appRouter = router({
   system: systemRouter,
@@ -28,7 +29,8 @@ export const appRouter = router({
   admin: adminRouter,
   chat: chatRouter,
   webhooks: webhooksRouter,
-  affiliates: affiliatesRouter,
+  affiliate: affiliatesRouter,
+  onboarding: onboardingRouter,
 });
 
 export type AppRouter = typeof appRouter;

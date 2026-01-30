@@ -16,6 +16,8 @@ import Plans from "./pages/Plans";
 import Support from "./pages/Support";
 import Checkout from "./pages/Checkout";
 import AdminFinancials from "./pages/AdminFinancials";
+import Welcome from "./pages/Welcome";
+import CloudWorkspace from "./pages/CloudWorkspace";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -24,7 +26,9 @@ function Router() {
       <Route path={"/"} component={Home} />
       <Route path={"/dashboard"} component={Dashboard} />
       <Route path={"/onboarding"} component={Onboarding} />
+      <Route path={"/welcome"} component={Welcome} />
       <Route path={"/cloud"} component={Cloud} />
+      <Route path={"/cloud-workspace"} component={CloudWorkspace} />
       <Route path={"/email"} component={Email} />
       <Route path={"/hosting"} component={Hosting} />
       <Route path={"/admin-nexus"} component={AdminNexus} />

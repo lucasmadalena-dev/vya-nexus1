@@ -15,13 +15,13 @@ export default function Partners() {
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const registerMutation = trpc.affiliates.register.useMutation({
-    onSuccess: (data) => {
+  const registerMutation = trpc.affiliate.register.useMutation({
+    onSuccess: (data: any) => {
       toast.success(data.message);
       setSubmitted(true);
       setFormData({ name: "", email: "", instagramHandle: "", youtubeChannel: "" });
     },
-    onError: (error) => {
+    onError: (error: any) => {
       toast.error(error.message || "Erro ao registrar");
     },
   });

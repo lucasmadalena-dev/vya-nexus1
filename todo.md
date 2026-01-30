@@ -275,3 +275,26 @@
 - [x] Adicionar link 'Seja um Parceiro' no footer
 - [x] Configurar navegação para /partners
 - [x] Estilizar footer com branding Vya Nexus
+
+
+## Redesign UI/UX - Estilo Google Workspace
+
+### Onboarding Híbr ido
+- [x] Criar tela /welcome com escolha de modo
+- [x] Adicionar campo is_email_active no schema
+- [x] Adicionar campo storage_bonus_applied no schema
+- [x] Implementar lógica de bônus 50% para Storage Pro
+- [x] Migrar banco de dados
+
+### Redesign Interface
+- [x] Criar sidebar com menu fixo e botão '+ Novo'
+- [x] Implementar header com busca centralizada
+- [x] Redesenhar dashboard em Grid/Lista
+- [x] Implementar ícones limpos e tipografia moderna
+- [x] Criar barra de progresso de storage na sidebar
+
+### Feedback Visual de Bônus
+- [x] Exibir limite com bônus na barra de storage
+- [x] Adicionar tag 'Bônus Ativo' visual
+- [x] Estilizar com Tailwind CSS
+- [x] Validar responsividade mobile

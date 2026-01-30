@@ -39,6 +39,9 @@ export const tenants = mysqlTable("tenants", {
   ownerId: int("ownerId").notNull(),
   /** Status do tenant */
   status: mysqlEnum("status", ["active", "suspended", "cancelled"]).default("active").notNull(),
+  onboardingMode: mysqlEnum("onboardingMode", ["complete", "storage_pro"]).default("complete"),
+  isEmailActive: int("isEmailActive").default(1),
+  storageBonusApplied: int("storageBonusApplied").default(0),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
