@@ -11,6 +11,7 @@ import { webhooksRouter } from "./routers/webhooks";
 import { emailVyaconceptRouter } from "./routers/email-vyaconcept";
 import { plansRouter } from "./routers/plans";
 import { supportRouter } from "./routers/support";
+import { checkoutRouter } from "./routers/checkout";
 
 export const appRouter = router({
   system: systemRouter,
@@ -18,6 +19,7 @@ export const appRouter = router({
   payments: paymentsRouter,
   plans: plansRouter,
   support: supportRouter,
+  checkout: checkoutRouter,
   cloud: cloudRouter,
   email: emailRouter,
   emailVya: emailVyaconceptRouter,

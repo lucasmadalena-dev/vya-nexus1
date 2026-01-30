@@ -219,3 +219,34 @@
 - [ ] Integrar matriz de planos ao checkout
 - [ ] Implementar lógica de upgrade no webhook
 - [ ] Atualizar status de assinatura com plano selecionado
+
+
+## Últimos Pontos Antes do Deploy (95% Pronto)
+
+### Checkout Stripe (Test Mode)
+- [x] Criar router tRPC para iniciar sessão de checkout
+- [x] Vincular matriz de planos aos preços do Stripe
+- [x] Implementar cálculo de imposto (15%) no checkout
+- [x] Criar página de checkout com redirecionamento
+- [x] Testar fluxo completo de pagamento
+
+### Dashboard Financeiro Admin
+- [x] Criar página AdminFinancials com gráficos
+- [x] Implementar gráfico de Receita Bruta
+- [x] Implementar gráfico de Impostos (15%)
+- [x] Implementar gráfico de Taxas Stripe
+- [x] Implementar cálculo de Lucro Líquido com S3 ($0,023/GB)
+- [x] Adicionar filtros por período
+
+### Lógica de Bloqueio/Upgrade
+- [x] Monitorar uso de storage no dashboard
+- [x] Exibir modal quando atingir 60GB
+- [x] Implementar botão de upgrade funcional
+- [x] Testar transição para Standard 1TB
+
+### Deploy Checklist
+- [x] Criar DEPLOY_CHECKLIST.md
+- [x] Documentar comandos Nginx
+- [x] Documentar comandos PM2
+- [x] Documentar comandos Let's Encrypt
+- [x] Documentar verificação de saúde

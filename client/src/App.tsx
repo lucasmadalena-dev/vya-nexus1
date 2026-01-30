@@ -13,6 +13,8 @@ import Hosting from "./pages/Hosting";
 import AdminNexus from "./pages/AdminNexus";
 import Plans from "./pages/Plans";
 import Support from "./pages/Support";
+import Checkout from "./pages/Checkout";
+import AdminFinancials from "./pages/AdminFinancials";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -25,7 +27,9 @@ function Router() {
       <Route path={"/email"} component={Email} />
       <Route path={"/hosting"} component={Hosting} />
       <Route path={"/admin-nexus"} component={AdminNexus} />
+      <Route path={"/admin-financials"} component={AdminFinancials} />
       <Route path={"/plans"} component={Plans} />
+      <Route path={"/checkout"} component={Checkout} />
       <Route path={"/support"} component={Support} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
