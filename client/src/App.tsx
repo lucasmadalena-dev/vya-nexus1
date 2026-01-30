@@ -1,6 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
+import Partners from "@/pages/Partners";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
@@ -31,6 +32,7 @@ function Router() {
       <Route path={"/plans"} component={Plans} />
       <Route path={"/checkout"} component={Checkout} />
       <Route path={"/support"} component={Support} />
+      <Route path={"/partners"} component={Partners} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

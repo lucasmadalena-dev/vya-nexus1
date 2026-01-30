@@ -244,6 +244,44 @@ export default function Home() {
           <p className="text-blue-100 mt-4">Sem cartão de crédito necessário</p>
         </div>
       </main>
+      {/* Footer */}
+      <footer className="bg-black/30 border-t border-white/10 backdrop-blur-md">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <h3 className="font-bold text-white mb-4">Vya Nexus</h3>
+              <p className="text-blue-100 text-sm">Infraestrutura digital completa em uma plataforma.</p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-white mb-4">Produto</h4>
+              <ul className="space-y-2 text-blue-100 text-sm">
+                <li><a href="/plans" className="hover:text-white">Planos</a></li>
+                <li><a href="/support" className="hover:text-white">Suporte</a></li>
+                <li><a href="/partners" className="hover:text-white">Seja um Parceiro</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-white mb-4">Empresa</h4>
+              <ul className="space-y-2 text-blue-100 text-sm">
+                <li><a href="#" className="hover:text-white">Sobre</a></li>
+                <li><a href="#" className="hover:text-white">Blog</a></li>
+                <li><a href="#" className="hover:text-white">Contato</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-white mb-4">Legal</h4>
+              <ul className="space-y-2 text-blue-100 text-sm">
+                <li><a href="#" className="hover:text-white">Privacidade</a></li>
+                <li><a href="#" className="hover:text-white">Termos</a></li>
+                <li><a href="#" className="hover:text-white">Cookies</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-white/10 pt-8 text-center text-blue-100 text-sm">
+            <p>&copy; 2026 Vya Nexus. Todos os direitos reservados.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

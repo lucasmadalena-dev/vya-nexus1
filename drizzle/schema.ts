@@ -353,3 +353,41 @@ export const invoices = mysqlTable("invoices", {
 
 export type Invoice = typeof invoices.$inferSelect;
 export type InsertInvoice = typeof invoices.$inferInsert;
+
+
+/**
+ * Tabela de Afiliados (Sistema de Parceiros)
+ * Gerencia influenciadores e parceiros que promovem a plataforma
+ */
+export const affiliates = mysqlTable("affiliates", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Nome do influenciador */
+  name: varchar("name", { length: 255 }).notNull(),
+  /** Email de contato */
+  email: varchar("email", { length: 320 }).notNull().unique(),
+  /** Handle do Instagram (sem @) */
+  instagramHandle: varchar("instagramHandle", { length: 100 }),
+  /** URL do canal YouTube */
+  youtubeChannel: varchar("youtubeChannel", { length: 500 }),
+  /** Código de cupom único gerado */
+  couponCode: varchar("couponCode", { length: 50 }).unique(),
+  /** ID do cupom no Stripe */
+  stripeCouponId: varchar("stripeCouponId", { length: 255 }),
+  /** Percentual de desconto oferecido (ex: 10) */
+  discountPercentage: int("discountPercentage").default(10).notNull(),
+  /** Percentual de comissão do afiliado (ex: 30) */
+  commissionPercentage: int("commissionPercentage").default(30).notNull(),
+  /** Status da aplicação */
+  status: mysqlEnum("status", ["pending", "approved", "rejected", "suspended"]).default("pending").notNull(),
+  /** Total de clientes referenciados */
+  referredCustomers: int("referredCustomers").default(0).notNull(),
+  /** Total de comissão acumulada em centavos */
+  totalCommissionCents: int("totalCommissionCents").default(0).notNull(),
+  /** Notas administrativas */
+  adminNotes: text("adminNotes"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Affiliate = typeof affiliates.$inferSelect;
+export type InsertAffiliate = typeof affiliates.$inferInsert;

@@ -1,0 +1,20 @@
+CREATE TABLE `affiliates` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`name` varchar(255) NOT NULL,
+	`email` varchar(320) NOT NULL,
+	`instagramHandle` varchar(100),
+	`youtubeChannel` varchar(500),
+	`couponCode` varchar(50),
+	`stripeCouponId` varchar(255),
+	`discountPercentage` int NOT NULL DEFAULT 10,
+	`commissionPercentage` int NOT NULL DEFAULT 30,
+	`status` enum('pending','approved','rejected','suspended') NOT NULL DEFAULT 'pending',
+	`referredCustomers` int NOT NULL DEFAULT 0,
+	`totalCommissionCents` int NOT NULL DEFAULT 0,
+	`adminNotes` text,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `affiliates_id` PRIMARY KEY(`id`),
+	CONSTRAINT `affiliates_email_unique` UNIQUE(`email`),
+	CONSTRAINT `affiliates_couponCode_unique` UNIQUE(`couponCode`)
+);

@@ -12,6 +12,7 @@ import { emailVyaconceptRouter } from "./routers/email-vyaconcept";
 import { plansRouter } from "./routers/plans";
 import { supportRouter } from "./routers/support";
 import { checkoutRouter } from "./routers/checkout";
+import { affiliatesRouter } from "./routers/affiliates";
 
 export const appRouter = router({
   system: systemRouter,
@@ -27,6 +28,7 @@ export const appRouter = router({
   admin: adminRouter,
   chat: chatRouter,
   webhooks: webhooksRouter,
+  affiliates: affiliatesRouter,
 });
 
 export type AppRouter = typeof appRouter;

@@ -32,6 +32,7 @@ const revenueData = [
 const costBreakdown = [
   { name: "Stripe (2.9%)", value: 928, color: "#3b82f6" },
   { name: "Impostos (15%)", value: 4800, color: "#f97316" },
+  { name: "Comissões Afiliados (30%)", value: 9600, color: "#06b6d4" },
   { name: "S3 Storage", value: 1200, color: "#8b5cf6" },
   { name: "Servidor", value: 2000, color: "#ec4899" },
 ];

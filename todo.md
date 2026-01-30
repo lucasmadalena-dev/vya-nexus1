@@ -250,3 +250,28 @@
 - [x] Documentar comandos PM2
 - [x] Documentar comandos Let's Encrypt
 - [x] Documentar verificação de saúde
+
+
+## Sistema de Afiliados (Novo)
+
+### Página de Cadastro de Influencers
+- [x] Criar tabela `affiliates` no banco de dados
+- [x] Criar página `/partners` com formulário de cadastro
+- [x] Implementar validação de e-mail e redes sociais
+- [x] Salvar dados com status 'pendente'
+
+### Integração Stripe Coupons
+- [x] Habilitar `allow_promotion_codes` em Checkout Sessions
+- [x] Criar script para gerar cupons com 10% desconto
+- [x] Vincular metadata do influenciador à assinatura
+- [x] Testar fluxo de cupom no checkout
+
+### Cálculo de Comissão no Admin
+- [x] Adicionar linha de custo 'Comissões de Afiliados (30%)'
+- [x] Atualizar cálculo de lucro líquido no dashboard
+- [x] Exibir gráfico de comissões por influenciador
+
+### Footer e Links
+- [x] Adicionar link 'Seja um Parceiro' no footer
+- [x] Configurar navegação para /partners
+- [x] Estilizar footer com branding Vya Nexus
