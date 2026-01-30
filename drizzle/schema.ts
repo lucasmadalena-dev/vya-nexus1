@@ -244,3 +244,112 @@ export const chatMessages = mysqlTable("chatMessages", {
 
 export type ChatMessage = typeof chatMessages.$inferSelect;
 export type InsertChatMessage = typeof chatMessages.$inferInsert;
+
+/**
+ * Tabela de Planos Disponíveis
+ * Define os planos comerciais oferecidos pela plataforma
+ */
+export const plans = mysqlTable("plans", {
+  id: int("id").autoincrement().primaryKey(),
+  /** Nome do plano */
+  name: varchar("name", { length: 100 }).notNull().unique(),
+  /** Descrição do plano */
+  description: text("description"),
+  /** Preço mensal em centavos (BRL) */
+  priceMonthCents: int("priceMonthCents").notNull(),
+  /** Quantidade de contas de email incluídas */
+  emailSeats: int("emailSeats").notNull(),
+  /** Limite de armazenamento por conta em GB */
+  storagePerAccountGb: int("storagePerAccountGb").notNull(),
+  /** Se inclui suporte humano */
+  humanSupport: boolean("humanSupport").default(false).notNull(),
+  /** Se é um plano ativo */
+  active: boolean("active").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Plan = typeof plans.$inferSelect;
+export type InsertPlan = typeof plans.$inferInsert;
+
+/**
+ * Tabela de Upgrades de Contas Individuais
+ * Permite upgrades Standard 1TB para contas específicas
+ */
+export const accountUpgrades = mysqlTable("accountUpgrades", {
+  id: int("id").autoincrement().primaryKey(),
+  tenantId: int("tenantId").notNull(),
+  /** Tipo de upgrade */
+  upgradeType: mysqlEnum("upgradeType", ["standard_1tb"]).notNull(),
+  /** Preço mensal adicional em centavos */
+  additionalPriceCents: int("additionalPriceCents").notNull(),
+  /** Novo limite de armazenamento em GB */
+  newStorageLimitGb: int("newStorageLimitGb").notNull(),
+  /** Status do upgrade */
+  status: mysqlEnum("status", ["active", "inactive"]).default("active").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type AccountUpgrade = typeof accountUpgrades.$inferSelect;
+export type InsertAccountUpgrade = typeof accountUpgrades.$inferInsert;
+
+/**
+ * Tabela de Tickets de Suporte Humano
+ * Gerencia tickets de suporte para clientes elegíveis
+ */
+export const supportTickets = mysqlTable("supportTickets", {
+  id: int("id").autoincrement().primaryKey(),
+  tenantId: int("tenantId").notNull(),
+  userId: int("userId").notNull(),
+  /** Assunto do ticket */
+  subject: varchar("subject", { length: 255 }).notNull(),
+  /** Descrição do problema */
+  description: text("description").notNull(),
+  /** Prioridade do ticket */
+  priority: mysqlEnum("priority", ["low", "medium", "high", "critical"]).default("medium").notNull(),
+  /** Status do ticket */
+  status: mysqlEnum("status", ["open", "in_progress", "resolved", "closed"]).default("open").notNull(),
+  /** Tipo de suporte (email ou chat) */
+  supportType: mysqlEnum("supportType", ["email", "chat"]).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  resolvedAt: timestamp("resolvedAt"),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type SupportTicket = typeof supportTickets.$inferSelect;
+export type InsertSupportTicket = typeof supportTickets.$inferInsert;
+
+/**
+ * Tabela de Faturas e Faturamento
+ * Registra todas as transações e cálculos financeiros
+ */
+export const invoices = mysqlTable("invoices", {
+  id: int("id").autoincrement().primaryKey(),
+  tenantId: int("tenantId").notNull(),
+  /** Número da fatura */
+  invoiceNumber: varchar("invoiceNumber", { length: 50 }).notNull().unique(),
+  /** Valor bruto em centavos */
+  grossAmountCents: int("grossAmountCents").notNull(),
+  /** Taxa Stripe em centavos */
+  stripeFeesCents: int("stripeFeesCents").default(0).notNull(),
+  /** Provisão de imposto (15%) em centavos */
+  taxProvisionCents: int("taxProvisionCents").notNull(),
+  /** Custos de S3 em centavos */
+  s3CostsCents: int("s3CostsCents").default(0).notNull(),
+  /** Custos de servidor em centavos */
+  serverCostsCents: int("serverCostsCents").default(0).notNull(),
+  /** Lucro líquido em centavos */
+  netProfitCents: int("netProfitCents").notNull(),
+  /** Período de faturamento (início) */
+  periodStart: timestamp("periodStart").notNull(),
+  /** Período de faturamento (fim) */
+  periodEnd: timestamp("periodEnd").notNull(),
+  /** Status da fatura */
+  status: mysqlEnum("status", ["draft", "sent", "paid", "overdue", "cancelled"]).default("draft").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Invoice = typeof invoices.$inferSelect;
+export type InsertInvoice = typeof invoices.$inferInsert;

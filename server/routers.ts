@@ -9,11 +9,15 @@ import { adminRouter } from "./routers/admin";
 import { chatRouter } from "./routers/chat";
 import { webhooksRouter } from "./routers/webhooks";
 import { emailVyaconceptRouter } from "./routers/email-vyaconcept";
+import { plansRouter } from "./routers/plans";
+import { supportRouter } from "./routers/support";
 
 export const appRouter = router({
   system: systemRouter,
   auth: authRouter,
   payments: paymentsRouter,
+  plans: plansRouter,
+  support: supportRouter,
   cloud: cloudRouter,
   email: emailRouter,
   emailVya: emailVyaconceptRouter,

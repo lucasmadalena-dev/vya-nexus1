@@ -185,3 +185,37 @@
 - [x] Documentar como copiar arquivos Nginx
 - [x] Documentar como ativar Let's Encrypt
 - [x] Documentar como iniciar PM2
+
+
+## Estrutura Comercial Definitiva
+
+### Matriz de Planos e Preços
+- [x] Criar tabela de planos no banco de dados
+- [x] Implementar Vya Solo (R$ 29,90/mês, 1 conta 60GB)
+- [x] Implementar Avulsos (R$ 29,90 por conta, 2-3 contas)
+- [x] Implementar Starter 5 (R$ 99,90/mês, 5 contas 60GB)
+- [x] Implementar Starter 10 (R$ 189,90/mês, 10 contas 60GB)
+- [x] Implementar Vya Pro (R$ 199,90/mês, 10 contas 100GB + Suporte)
+
+### Upgrade Individual Standard 1TB
+- [x] Criar opção de upgrade +R$ 149,90/mês
+- [x] Implementar alteração de cota para 1024GB
+- [x] Adicionar upgrade ao checkout Stripe
+- [x] Habilitar chat humano para contas Standard
+
+### Módulo de Suporte
+- [x] Criar componente de chat IA (placeholder)
+- [x] Implementar suporte email para Solo/Starter 5
+- [x] Implementar chat humano para Starter 10/Pro/Standard
+- [x] Criar interface de suporte no dashboard
+
+### Cálculos Financeiros e Impostos
+- [x] Implementar provisão de 15% de imposto
+- [x] Criar cálculo de lucro: Receita - Stripe - Imposto - S3/Servidor
+- [x] Atualizar dashboard admin com métricas financeiras
+- [x] Criar relatório de faturamento com impostos
+
+### Integração Stripe
+- [ ] Integrar matriz de planos ao checkout
+- [ ] Implementar lógica de upgrade no webhook
+- [ ] Atualizar status de assinatura com plano selecionado
