@@ -4,9 +4,11 @@ import { createServer } from "http";
 import net from "net";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerOAuthRoutes } from "./oauth";
+import { authBypassMiddleware, bypassLoginRoute, bypassLogoutRoute } from "./auth-bypass";
 import { appRouter } from "../routers";
 import { createContext } from "./context";
 import { serveStatic, setupVite } from "./vite";
+import { initializeStorage } from "../storage";
 
 function isPortAvailable(port: number): Promise<boolean> {
   return new Promise(resolve => {
@@ -28,11 +30,28 @@ async function findAvailablePort(startPort: number = 3000): Promise<number> {
 }
 
 async function startServer() {
+  // Inicializar storage (local ou AWS S3)
+  initializeStorage();
+  
   const app = express();
   const server = createServer(app);
   // Configure body parser with larger size limit for file uploads
   app.use(express.json({ limit: "50mb" }));
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
+  
+  // Servir arquivos do storage local em desenvolvimento
+  if (process.env.NODE_ENV === "development" && process.env.USE_LOCAL_STORAGE === "true") {
+    const path = require("path");
+    app.use("/uploads", express.static(process.env.LOCAL_STORAGE_PATH || "./uploads"));
+  }
+  
+  // Auth bypass middleware para desenvolvimento local
+  app.use(authBypassMiddleware);
+  
+  // Rotas de login/logout local (desenvolvimento)
+  app.get("/api/auth/bypass-login", bypassLoginRoute);
+  app.get("/api/auth/bypass-logout", bypassLogoutRoute);
+  
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
   // tRPC API
