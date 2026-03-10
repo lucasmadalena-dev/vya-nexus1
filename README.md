@@ -1,18 +1,26 @@
-# Vya Nexus 1
+# VyaNexus - Engineering & Architecture Lab 🧪
 
-Welcome to Vya Nexus 1, an Engineering & Architecture Lab.
+Este repositório é o **Laboratório de Engenharia e Arquitetura** do ecossistema VyaNexus, dedicado à experimentação tecnológica e prototipagem.
 
-## Engineering Highlights
-- Innovative engineering practices.
-- Collaborations with industry experts.
-- Development of cutting-edge projects.
+---
 
-## Experimental Stack
-- Utilizing the latest technology stack to push boundaries.
-- Focus on experimentation and research.
-- Emphasis on scalability and sustainability.
+## 🔬 Destaques de Engenharia
 
-## Philosophy
-- We believe in continuous learning and adaptation.
-- Committed to ethical engineering and architecture.
-- Striving for excellence and creativity in every project.
+*   **Drizzle ORM:** Implementação da evolução do Prisma para consultas SQL tipadas com TypeScript, garantindo performance superior.
+*   **Arquitetura de Suporte Híbrido:** Estrutura robusta para desenvolvimento multi-plataforma, incluindo scripts específicos para Windows (`.bat` e `.ps1`).
+*   **NestJS Integration:** Prototipagem de microserviços escaláveis para desacoplamento de funcionalidades críticas.
+
+---
+
+## 🛠️ Stack Experimental
+
+| Camada | Tecnologia |
+| :--- | :--- |
+| **Framework** | NestJS / Next.js |
+| **ORM** | Drizzle ORM |
+| **Linguagem** | TypeScript |
+| **DevOps** | Docker, PowerShell, Bash |
+
+---
+
+> **Filosofia de Engenharia:** "De Algoritmos Puros à Arquitetura Cloud". Este repositório demonstra a aplicação prática de conceitos de engenharia de software em problemas reais de infraestrutura.
